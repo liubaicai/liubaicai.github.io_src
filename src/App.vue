@@ -147,14 +147,15 @@ onBeforeUnmount(() => {
   );
   opacity: 0.15;
   animation: scanline-move 8s linear infinite;
+  will-change: transform;
 }
 
 @keyframes scanline-move {
   0% {
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
   }
   100% {
-    transform: translateY(10px);
+    transform: translate3d(0, 10px, 0);
   }
 }
 

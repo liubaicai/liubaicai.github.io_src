@@ -169,16 +169,16 @@ const siteName = import.meta.env.VITE_SITE_NAME;
 }
 
 @keyframes loading-dots {
-  0%, 20% {
+  0% {
     content: '';
   }
-  40% {
+  25% {
     content: '.';
   }
-  60% {
+  50% {
     content: '..';
   }
-  80%, 100% {
+  75%, 100% {
     content: '...';
   }
 }
