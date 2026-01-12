@@ -98,6 +98,9 @@ watch(
     .logo-img {
       border-radius: 50%;
       width: 120px;
+      border: 2px solid rgba(0, 255, 65, 0.3);
+      box-shadow: 0 0 20px rgba(0, 255, 65, 0.2), inset 0 0 20px rgba(0, 255, 65, 0.1);
+      animation: glow-pulse 3s ease-in-out infinite;
     }
     .name {
       width: 100%;
@@ -107,11 +110,16 @@ watch(
 
       .bg {
         font-size: 5rem;
+        color: #00ff41;
+        text-shadow: 0 0 10px rgba(0, 255, 65, 0.5), 0 0 20px rgba(0, 255, 65, 0.3);
+        animation: text-glow 2s ease-in-out infinite;
       }
 
       .sm {
         margin-left: 6px;
         font-size: 2rem;
+        color: #00ff41;
+        opacity: 0.8;
         @media (min-width: 721px) and (max-width: 789px) {
           display: none;
         }
@@ -149,10 +157,16 @@ watch(
         line-height: 2rem;
         margin-right: auto;
         transition: opacity 0.2s;
+        font-family: "Courier New", "Consolas", monospace;
 
         p {
           &:nth-of-type(1) {
             font-family: "Pacifico-Regular";
+            color: #00ff41;
+            text-shadow: 0 0 5px rgba(0, 255, 65, 0.3);
+          }
+          &:nth-of-type(2) {
+            color: rgba(255, 255, 255, 0.9);
           }
         }
       }

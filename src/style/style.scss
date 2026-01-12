@@ -17,9 +17,9 @@ body {
   // height: 100dvh;
   margin: 0;
   padding: 0;
-  background-color: #333;
+  background-color: #0a0e27;
   overflow: hidden;
-  font-family: "HarmonyOS_Regular", sans-serif;
+  font-family: "HarmonyOS_Regular", "Courier New", "Consolas", monospace, sans-serif;
 }
 
 *,
@@ -39,8 +39,9 @@ p {
 
 // 链接悬停效果
 a:hover {
-  color: rgb(57, 159, 255);
+  color: #00ff41;
   text-decoration: underline;
+  text-shadow: 0 0 5px #00ff41;
 }
 
 // 字体文件
@@ -68,15 +69,34 @@ a:hover {
 
 // 卡片样式
 .cards {
-  border-radius: 6px;
-  background-color: #00000040;
+  border-radius: 8px;
+  background-color: rgba(10, 14, 39, 0.85);
   backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 255, 65, 0.3);
+  box-shadow: 0 0 20px rgba(0, 255, 65, 0.1), inset 0 0 20px rgba(0, 255, 65, 0.05);
   transform: scale(1);
   transition:
     backdrop-filter 0.3s,
-    transform 0.3s;
+    transform 0.3s,
+    border-color 0.3s,
+    box-shadow 0.3s;
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.5), transparent);
+    animation: scan-line 3s ease-in-out infinite;
+  }
+  
   &:hover {
     transform: scale(1.01);
+    border-color: rgba(0, 255, 65, 0.6);
+    box-shadow: 0 0 30px rgba(0, 255, 65, 0.2), inset 0 0 30px rgba(0, 255, 65, 0.08);
   }
   &:active {
     transform: scale(0.98);
@@ -189,6 +209,35 @@ a:hover {
   }
 }
 
+@keyframes scan-line {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(100px);
+    opacity: 1;
+  }
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.1), inset 0 0 20px rgba(0, 255, 65, 0.05);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(0, 255, 65, 0.2), inset 0 0 30px rgba(0, 255, 65, 0.08);
+  }
+}
+
+@keyframes text-glow {
+  0%, 100% {
+    text-shadow: 0 0 5px rgba(0, 255, 65, 0.5);
+  }
+  50% {
+    text-shadow: 0 0 10px rgba(0, 255, 65, 0.8), 0 0 20px rgba(0, 255, 65, 0.4);
+  }
+}
+
 // 隐藏元素
 @media (min-width: 910px) and (max-width: 1200px) {
   .sm-hidden {
@@ -201,21 +250,23 @@ a:hover {
   position: fixed;
   width: 18px;
   height: 18px;
-  background: #fff;
+  background: #00ff41;
   border-radius: 25px;
-  opacity: 0.25;
+  opacity: 0.4;
   z-index: 10086;
   pointer-events: none;
   transition: 0.2s ease-in-out;
   transition-property: background, opacity, transform;
+  box-shadow: 0 0 10px #00ff41;
 
   &.hidden {
     opacity: 0;
   }
 
   &.active {
-    opacity: 0.5;
+    opacity: 0.7;
     transform: scale(0.5);
+    box-shadow: 0 0 15px #00ff41;
   }
 }
 
@@ -230,5 +281,6 @@ scrollbar {
 ::-webkit-scrollbar-thumb,
 scrollbar-thumb {
   border-radius: 10px;
-  background-color: #eeeeee;
+  background-color: rgba(0, 255, 65, 0.5);
+  box-shadow: 0 0 5px rgba(0, 255, 65, 0.3);
 }

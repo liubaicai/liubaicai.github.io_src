@@ -39,7 +39,11 @@ const socialTip = ref("通过这里联系我吧");
   animation: fade 0.5s;
   transition:
     background-color 0.3s,
-    backdrop-filter 0.3s;
+    backdrop-filter 0.3s,
+    border 0.3s,
+    box-shadow 0.3s;
+  border: 1px solid transparent;
+  
   @media (max-width: 840px) {
     max-width: 100%;
     justify-content: center;
@@ -58,11 +62,34 @@ const socialTip = ref("通过这里联系我吧");
     justify-content: center;
     a {
       display: inherit;
+      position: relative;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        inset: -2px;
+        border-radius: 50%;
+        padding: 2px;
+        background: linear-gradient(45deg, transparent, #00ff41, transparent);
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      
+      &:hover::before {
+        opacity: 1;
+      }
+      
       .icon {
         margin: 0 12px;
-        transition: transform 0.3s;
+        transition: transform 0.3s, filter 0.3s;
+        filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.3));
+        
         &:hover {
-          transform: scale(1.1);
+          transform: scale(1.15);
+          filter: drop-shadow(0 0 8px rgba(0, 255, 65, 0.8));
         }
         &:active {
           transform: scale(1);
@@ -74,11 +101,16 @@ const socialTip = ref("通过这里联系我吧");
     display: none;
     margin-right: 12px;
     animation: fade 0.5s;
+    font-family: "Courier New", "Consolas", monospace;
+    color: #00ff41;
+    text-shadow: 0 0 5px rgba(0, 255, 65, 0.3);
   }
   @media (min-width: 768px) {
     &:hover {
-      background-color: #00000040;
+      background-color: rgba(10, 14, 39, 0.6);
       backdrop-filter: blur(5px);
+      border: 1px solid rgba(0, 255, 65, 0.2);
+      box-shadow: 0 0 15px rgba(0, 255, 65, 0.1);
       .tip {
         display: block;
       }

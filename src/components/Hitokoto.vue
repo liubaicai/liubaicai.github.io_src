@@ -79,6 +79,19 @@ onMounted(() => {
   height: 100%;
   padding: 20px;
   animation: fade 0.5s;
+  position: relative;
+  
+  &::after {
+    content: '> _';
+    position: absolute;
+    bottom: 10px;
+    right: 15px;
+    color: #00ff41;
+    font-family: monospace;
+    font-size: 0.9rem;
+    animation: blink 1s step-end infinite;
+  }
+  
   .open-music {
     width: 100%;
     position: absolute;
@@ -87,9 +100,10 @@ onMounted(() => {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #00000026;
+    background: rgba(0, 255, 65, 0.1);
     padding: 4px 0;
     border-radius: 8px 8px 0 0;
+    border-bottom: 1px solid rgba(0, 255, 65, 0.3);
     .i-icon {
       width: 18px;
       height: 18px;
@@ -98,6 +112,7 @@ onMounted(() => {
     }
     span {
       font-size: 0.95rem;
+      color: #00ff41;
     }
   }
   .content {
@@ -113,13 +128,28 @@ onMounted(() => {
       display: -webkit-box;
       -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
+      font-family: "Courier New", "Consolas", monospace;
+      color: rgba(255, 255, 255, 0.9);
+      line-height: 1.6;
     }
     .from {
       margin-top: 10px;
       font-weight: bold;
       align-self: flex-end;
       font-size: 1.1rem;
+      color: #00ff41;
+      font-family: monospace;
+      text-shadow: 0 0 5px rgba(0, 255, 65, 0.3);
     }
+  }
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
   }
 }
 </style>
