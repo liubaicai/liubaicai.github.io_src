@@ -47,7 +47,8 @@ const siteName = import.meta.env.VITE_SITE_NAME;
       height: 150px;
       border-radius: 50%;
       border: 3px solid transparent;
-      border-top-color: #fff;
+      border-top-color: #00ff41;
+      box-shadow: 0 0 20px rgba(0, 255, 65, 0.5);
       animation: spin 1.8s linear infinite;
       z-index: 2;
 
@@ -60,7 +61,7 @@ const siteName = import.meta.env.VITE_SITE_NAME;
         bottom: 5px;
         border-radius: 50%;
         border: 3px solid transparent;
-        border-top-color: #a4a4a4;
+        border-top-color: rgba(0, 255, 65, 0.6);
         animation: spin-reverse 0.6s linear infinite;
       }
 
@@ -73,7 +74,7 @@ const siteName = import.meta.env.VITE_SITE_NAME;
         bottom: 15px;
         border-radius: 50%;
         border: 3px solid transparent;
-        border-top-color: #d3d3d3;
+        border-top-color: rgba(0, 255, 65, 0.4);
         animation: spin 1s linear infinite;
       }
     }
@@ -81,14 +82,26 @@ const siteName = import.meta.env.VITE_SITE_NAME;
       display: flex;
       flex-direction: column;
       align-items: center;
-      color: #fff;
+      color: #00ff41;
       z-index: 2;
       margin-top: 40px;
       font-size: 24px;
+      font-family: "Courier New", "Consolas", monospace;
+      text-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+      
+      .name {
+        animation: text-glow 2s ease-in-out infinite;
+      }
+      
       .tip {
         margin-top: 6px;
         font-size: 18px;
-        opacity: 0.6;
+        opacity: 0.8;
+        
+        &::after {
+          content: '...';
+          animation: loading-dots 1.5s steps(4) infinite;
+        }
       }
     }
   }
@@ -97,13 +110,18 @@ const siteName = import.meta.env.VITE_SITE_NAME;
     top: 0;
     width: 51%;
     height: 100%;
-    background: #333;
+    background: #0a0e27;
     z-index: 1;
+    border: 1px solid rgba(0, 255, 65, 0.2);
+    box-shadow: 0 0 30px rgba(0, 255, 65, 0.1);
+    
     &.section-left {
       left: 0;
+      border-right: 2px solid rgba(0, 255, 65, 0.3);
     }
     &.section-right {
       right: 0;
+      border-left: 2px solid rgba(0, 255, 65, 0.3);
     }
   }
   &.loaded {
@@ -147,6 +165,21 @@ const siteName = import.meta.env.VITE_SITE_NAME;
   }
   100% {
     transform: rotate(-360deg);
+  }
+}
+
+@keyframes loading-dots {
+  0%, 20% {
+    content: '';
+  }
+  40% {
+    content: '.';
+  }
+  60% {
+    content: '..';
+  }
+  80%, 100% {
+    content: '...';
   }
 }
 </style>

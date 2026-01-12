@@ -3,6 +3,8 @@
   <Loading />
   <!-- 壁纸 -->
   <Background @loadComplete="loadComplete" />
+  <!-- 扫描线效果 -->
+  <div class="scanlines"></div>
   <!-- 主界面 -->
   <Transition name="fade" mode="out-in">
     <main id="main" v-if="store.imgLoadStatus">
@@ -127,6 +129,35 @@ onBeforeUnmount(() => {
 </script>
 
 <style lang="scss" scoped>
+// 扫描线效果
+.scanlines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.15) 0px,
+    transparent 1px,
+    transparent 2px,
+    rgba(0, 0, 0, 0.15) 3px
+  );
+  opacity: 0.15;
+  animation: scanline-move 8s linear infinite;
+}
+
+@keyframes scanline-move {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(10px);
+  }
+}
+
 #main {
   position: absolute;
   top: 0;
@@ -157,7 +188,7 @@ onBeforeUnmount(() => {
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: #00000080;
+      background-color: rgba(10, 14, 39, 0.85);
       backdrop-filter: blur(20px);
       z-index: 2;
       animation: fade 0.5s;
@@ -175,16 +206,22 @@ onBeforeUnmount(() => {
     left: calc(50% - 28px);
     width: 56px;
     height: 34px;
-    background: rgb(0 0 0 / 20%);
+    background: rgba(10, 14, 39, 0.6);
     backdrop-filter: blur(10px);
     border-radius: 6px;
-    transition: transform 0.3s;
+    border: 1px solid rgba(0, 255, 65, 0.3);
+    box-shadow: 0 0 15px rgba(0, 255, 65, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
     animation: fade 0.5s;
+    &:hover {
+      box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+    }
     &:active {
       transform: scale(0.95);
     }
     .i-icon {
       transform: translateY(2px);
+      color: #00ff41;
     }
     @media (min-width: 721px) {
       display: none;
