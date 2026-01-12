@@ -73,6 +73,7 @@ const socialTip = ref("通过这里联系我吧");
         background: linear-gradient(45deg, transparent, #00ff41, transparent);
         -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
         -webkit-mask-composite: xor;
+        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
         mask-composite: exclude;
         opacity: 0;
         transition: opacity 0.3s;

@@ -100,7 +100,7 @@ const siteName = import.meta.env.VITE_SITE_NAME;
         
         &::after {
           content: '...';
-          animation: loading-dots 1.5s steps(4) infinite;
+          animation: loading-dots 1.5s steps(3) infinite;
         }
       }
     }
@@ -169,16 +169,13 @@ const siteName = import.meta.env.VITE_SITE_NAME;
 }
 
 @keyframes loading-dots {
-  0% {
-    content: '';
-  }
-  25% {
+  0%, 33% {
     content: '.';
   }
-  50% {
+  34%, 66% {
     content: '..';
   }
-  75%, 100% {
+  67%, 100% {
     content: '...';
   }
 }
