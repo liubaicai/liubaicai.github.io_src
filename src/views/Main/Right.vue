@@ -46,6 +46,17 @@ const siteUrl = computed(() => {
     text-align: center;
     transition: transform 0.3s;
     animation: fade 0.5s;
+    color: #00ff41;
+    text-shadow: 0 0 10px rgba(0, 255, 65, 0.5), 0 0 20px rgba(0, 255, 65, 0.3);
+    
+    .bg {
+      animation: text-glow 2s ease-in-out infinite;
+    }
+    
+    .sm {
+      opacity: 0.8;
+    }
+    
     &:active {
       transform: scale(0.95);
     }

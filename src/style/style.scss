@@ -9,6 +9,18 @@ GitHub：https://github.com/imsyy/home
 
 /*全局样式*/
 
+// CSS 变量定义
+:root {
+  --geek-primary-color: #00ff41;
+  --geek-primary-rgb: 0, 255, 65;
+  --geek-bg-dark: #0a0e27;
+  --geek-glow-light: rgba(var(--geek-primary-rgb), 0.1);
+  --geek-glow-medium: rgba(var(--geek-primary-rgb), 0.3);
+  --geek-glow-strong: rgba(var(--geek-primary-rgb), 0.5);
+  --geek-border: rgba(var(--geek-primary-rgb), 0.3);
+  --geek-bg-card: rgba(10, 14, 39, 0.85);
+}
+
 html,
 body {
   width: 100%;
@@ -17,9 +29,9 @@ body {
   // height: 100dvh;
   margin: 0;
   padding: 0;
-  background-color: #333;
+  background-color: var(--geek-bg-dark);
   overflow: hidden;
-  font-family: "HarmonyOS_Regular", sans-serif;
+  font-family: "HarmonyOS_Regular", "Courier New", "Consolas", monospace, sans-serif;
 }
 
 *,
@@ -39,8 +51,9 @@ p {
 
 // 链接悬停效果
 a:hover {
-  color: rgb(57, 159, 255);
+  color: var(--geek-primary-color);
   text-decoration: underline;
+  text-shadow: 0 0 5px var(--geek-glow-strong);
 }
 
 // 字体文件
@@ -68,15 +81,34 @@ a:hover {
 
 // 卡片样式
 .cards {
-  border-radius: 6px;
-  background-color: #00000040;
+  border-radius: 8px;
+  background-color: var(--geek-bg-card);
   backdrop-filter: blur(10px);
+  border: 1px solid var(--geek-border);
+  box-shadow: 0 0 20px var(--geek-glow-light), inset 0 0 20px rgba(var(--geek-primary-rgb), 0.05);
   transform: scale(1);
   transition:
     backdrop-filter 0.3s,
-    transform 0.3s;
+    transform 0.3s,
+    border-color 0.3s,
+    box-shadow 0.3s;
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--geek-glow-strong), transparent);
+    animation: scan-line 3s ease-in-out infinite;
+  }
+  
   &:hover {
     transform: scale(1.01);
+    border-color: rgba(var(--geek-primary-rgb), 0.6);
+    box-shadow: 0 0 30px rgba(var(--geek-primary-rgb), 0.2), inset 0 0 30px rgba(var(--geek-primary-rgb), 0.08);
   }
   &:active {
     transform: scale(0.98);
@@ -189,6 +221,35 @@ a:hover {
   }
 }
 
+@keyframes scan-line {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0;
+  }
+  50% {
+    transform: translate3d(0, 20vh, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px var(--geek-glow-light), inset 0 0 20px rgba(var(--geek-primary-rgb), 0.05);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(var(--geek-primary-rgb), 0.2), inset 0 0 30px rgba(var(--geek-primary-rgb), 0.08);
+  }
+}
+
+@keyframes text-glow {
+  0%, 100% {
+    text-shadow: 0 0 5px var(--geek-glow-strong);
+  }
+  50% {
+    text-shadow: 0 0 10px rgba(var(--geek-primary-rgb), 0.8), 0 0 20px rgba(var(--geek-primary-rgb), 0.4);
+  }
+}
+
 // 隐藏元素
 @media (min-width: 910px) and (max-width: 1200px) {
   .sm-hidden {
@@ -201,21 +262,23 @@ a:hover {
   position: fixed;
   width: 18px;
   height: 18px;
-  background: #fff;
+  background: var(--geek-primary-color);
   border-radius: 25px;
-  opacity: 0.25;
+  opacity: 0.4;
   z-index: 10086;
   pointer-events: none;
   transition: 0.2s ease-in-out;
   transition-property: background, opacity, transform;
+  box-shadow: 0 0 10px var(--geek-primary-color);
 
   &.hidden {
     opacity: 0;
   }
 
   &.active {
-    opacity: 0.5;
+    opacity: 0.7;
     transform: scale(0.5);
+    box-shadow: 0 0 15px var(--geek-primary-color);
   }
 }
 
@@ -230,5 +293,6 @@ scrollbar {
 ::-webkit-scrollbar-thumb,
 scrollbar-thumb {
   border-radius: 10px;
-  background-color: #eeeeee;
+  background-color: var(--geek-glow-strong);
+  box-shadow: 0 0 5px var(--geek-glow-medium);
 }

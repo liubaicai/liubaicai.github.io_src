@@ -79,11 +79,23 @@ const siteIcp = ref(import.meta.env.VITE_SITE_ICP);
   text-align: center;
   z-index: 0;
   font-size: 12px;
+  font-family: "Courier New", "Consolas", monospace;
   // 文字不换行
   word-break: keep-all;
   white-space: nowrap;
+  
+  a {
+    color: #00ff41;
+    text-shadow: 0 0 5px rgba(0, 255, 65, 0.3);
+    
+    &:hover {
+      text-shadow: 0 0 8px rgba(0, 255, 65, 0.5);
+    }
+  }
+  
   .power {
     animation: fade 0.3s;
+    color: rgba(255, 255, 255, 0.8);
   }
   .lrc {
     padding: 0 20px;
@@ -99,18 +111,23 @@ const siteIcp = ref(import.meta.env.VITE_SITE_ICP);
       align-items: center;
       .lrc-text {
         margin: 0 8px;
+        color: #00ff41;
+        text-shadow: 0 0 5px rgba(0, 255, 65, 0.3);
       }
       .i-icon {
         width: 18px;
         height: 18px;
         display: inherit;
+        filter: drop-shadow(0 0 5px rgba(0, 255, 65, 0.5));
       }
     }
   }
   &.blur {
     backdrop-filter: blur(10px);
-    background: rgb(0 0 0 / 25%);
+    background: rgba(10, 14, 39, 0.6);
     font-size: 12px;
+    border-top: 1px solid rgba(0, 255, 65, 0.2);
+    box-shadow: 0 -5px 15px rgba(0, 255, 65, 0.05);
   }
   .fade-enter-active,
   .fade-leave-active {

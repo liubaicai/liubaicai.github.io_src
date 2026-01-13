@@ -113,20 +113,45 @@ onBeforeUnmount(() => {
       align-items: center;
       justify-content: space-between;
       animation: fade 0.5s;
+      position: relative;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        top: 8px;
+        left: 15px;
+        right: 15px;
+        height: 2px;
+        background: linear-gradient(90deg, #00ff41, transparent);
+        box-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+      }
+      
       .time {
         margin-top: 24px;
         font-size: 1.1rem;
         text-align: center;
+        font-family: "Courier New", "Consolas", monospace;
+        
         .date {
           text-overflow: ellipsis;
           overflow-x: hidden;
           white-space: nowrap;
+          color: rgba(255, 255, 255, 0.85);
+          letter-spacing: 1px;
+          
+          span {
+            color: #00ff41;
+            text-shadow: 0 0 5px rgba(0, 255, 65, 0.3);
+          }
         }
         .text {
           margin-top: 10px;
           font-size: 3.25rem;
           letter-spacing: 2px;
           font-family: "UnidreamLED";
+          color: #00ff41;
+          text-shadow: 0 0 10px rgba(0, 255, 65, 0.5), 0 0 20px rgba(0, 255, 65, 0.3);
+          animation: text-glow 2s ease-in-out infinite;
         }
         @media (min-width: 1201px) and (max-width: 1280px) {
           font-size: 1rem;

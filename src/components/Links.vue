@@ -96,10 +96,18 @@ onMounted(() => {
     display: flex;
     align-items: center;
     animation: fade 0.5s;
+    color: #00ff41;
+    
+    .xicon {
+      filter: drop-shadow(0 0 5px rgba(0, 255, 65, 0.5));
+    }
+    
     .title {
       margin-left: 8px;
       font-size: 1.15rem;
-      text-shadow: 0 0 5px #00000050;
+      text-shadow: 0 0 8px rgba(0, 255, 65, 0.5);
+      font-family: "Courier New", "Consolas", monospace;
+      font-weight: bold;
     }
   }
   .swiper {
@@ -117,18 +125,21 @@ onMounted(() => {
       align-items: center;
       justify-content: center;
       :deep(.swiper-pagination-bullet) {
-        background-color: #fff;
+        background-color: #00ff41;
         width: 20px;
         height: 4px;
         margin: 0 4px;
         border-radius: 4px;
-        opacity: 0.2;
-        transition: opacity 0.3s;
+        opacity: 0.3;
+        transition: opacity 0.3s, box-shadow 0.3s;
+        box-shadow: 0 0 5px rgba(0, 255, 65, 0.2);
         &.swiper-pagination-bullet-active {
           opacity: 1;
+          box-shadow: 0 0 10px rgba(0, 255, 65, 0.6);
         }
         &:hover {
           opacity: 1;
+          box-shadow: 0 0 10px rgba(0, 255, 65, 0.6);
         }
       }
     }
@@ -144,20 +155,63 @@ onMounted(() => {
       justify-content: center;
       padding: 0 10px;
       animation: fade 0.5s;
+      position: relative;
+      
+      &::before {
+        content: '[';
+        position: absolute;
+        left: 10px;
+        color: #00ff41;
+        opacity: 0;
+        transition: opacity 0.3s;
+        font-family: monospace;
+        font-size: 1.2rem;
+      }
+      
+      &::after {
+        content: ']';
+        position: absolute;
+        right: 10px;
+        color: #00ff41;
+        opacity: 0;
+        transition: opacity 0.3s;
+        font-family: monospace;
+        font-size: 1.2rem;
+      }
 
       &:hover {
         transform: scale(1.02);
-        background: rgb(0 0 0 / 40%);
+        background: rgba(0, 255, 65, 0.05);
         transition: 0.3s;
+        
+        &::before,
+        &::after {
+          opacity: 1;
+        }
+        
+        .xicon {
+          filter: drop-shadow(0 0 8px rgba(0, 255, 65, 0.6));
+        }
+        
+        .name {
+          color: #00ff41;
+          text-shadow: 0 0 5px rgba(0, 255, 65, 0.3);
+        }
       }
 
       &:active {
         transform: scale(1);
       }
+      
+      .xicon {
+        transition: filter 0.3s;
+      }
 
       .name {
         font-size: 1.1rem;
         margin-left: 8px;
+        font-family: "Courier New", "Consolas", monospace;
+        transition: color 0.3s, text-shadow 0.3s;
       }
       @media (min-width: 720px) and (max-width: 820px) {
         .name {
