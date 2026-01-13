@@ -110,15 +110,15 @@ watch(
 
       .bg {
         font-size: 5rem;
-        color: #00ff41;
-        text-shadow: 0 0 10px rgba(0, 255, 65, 0.5), 0 0 20px rgba(0, 255, 65, 0.3);
-        animation: text-glow 2s ease-in-out infinite;
+        color: #ffffff;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.3);
+        animation: text-glow-white 2s ease-in-out infinite;
       }
 
       .sm {
         margin-left: 6px;
         font-size: 2rem;
-        color: #00ff41;
+        color: #ffffff;
         opacity: 0.8;
         @media (min-width: 721px) and (max-width: 789px) {
           display: none;
@@ -203,5 +203,15 @@ watch(
   //     margin-top: 2.5rem;
   //   }
   // }
+}
+
+@keyframes text-glow-white {
+  0%,
+  100% {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.3);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.5);
+  }
 }
 </style>
